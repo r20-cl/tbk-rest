@@ -2,7 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "strict": false,
-    "outDir": "./dist/",
+    "outDir": "./lib",
     "removeComments": true,
     "noImplicitAny": false,
     "preserveConstEnums": true,
