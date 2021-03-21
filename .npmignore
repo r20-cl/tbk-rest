@@ -1,0 +1,12 @@
+node_modules/
+coverage/
+.nyc_output/
+*.log
+dist/
+.idea
+.vscode/
+.eslintrc
+tsconfig.json
+tsconfig-prod.json
+.editorconfig
+.nycrc
