@@ -48,7 +48,6 @@ export const refundTransaction = (config: TBKConfig): Endpoint<RefundTransaction
       data: {
         commerce_code: data.commerce_code,
         buy_order: data.buy_order,
-        token: data.token,
         amount: data.amount,
       }
     };
