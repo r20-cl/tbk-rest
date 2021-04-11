@@ -54,6 +54,6 @@ export const refundTransaction = (config: TBKConfig): Endpoint<RefundTransaction
     logger.info(`refund ${inspect(args)}`);
     const response = await request(args);
     logger.info(`refund response ${inspect(response.data)}`);
-    return validateResponse(response);
+    return validateResponse(response.data);
   };
 
