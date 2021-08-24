@@ -1,4 +1,4 @@
-import { Logger, parseOptions, request } from "@miqro/core";
+import { Logger, parse, request } from "@miqro/core";
 import { AUTH_HEADERS, Endpoint, TBKConfig } from "../../config";
 import { inspect } from "util";
 
@@ -8,14 +8,14 @@ export interface UnSubscribeRequest {
 }
 
 const validateRequest = (data: any): UnSubscribeRequest => {
-  return parseOptions("body", data, [
+  return parse("body", data, [
     { name: "tbk_user", type: "string", required: true },
     { name: "username", type: "string", required: true }
   ], "no_extra") as unknown as UnSubscribeRequest;
 };
 
 const validateResponse = (response: any): void => {
-  parseOptions("response", response, [], "no_extra");
+  parse("response", response, [], "no_extra");
 };
 
 export const unSubscribe = (config: TBKConfig): Endpoint<UnSubscribeRequest, void> =>

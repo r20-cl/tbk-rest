@@ -1,4 +1,4 @@
-import { Logger, parseOptions, request } from "@miqro/core";
+import { Logger, parse, request } from "@miqro/core";
 import { AUTH_HEADERS, Endpoint, TBKConfig } from "../../config";
 import { inspect } from "util";
 
@@ -35,7 +35,7 @@ export interface InitTransactionResponse {
 }
 
 const validateRequest = (data: any): InitTransactionRequest => {
-  return parseOptions("body", data as any, [
+  return parse("body", data as any, [
     { name: "username", type: "string", required: true },
     { name: "tbk_user", type: "string", required: true },
     { name: "buy_order", type: "string", required: true },
@@ -54,7 +54,7 @@ const validateRequest = (data: any): InitTransactionRequest => {
 };
 
 const validateResponse = (response: any): InitTransactionResponse => {
-  return parseOptions("response", response as any, [
+  return parse("response", response as any, [
     { name: "buy_order", type: "string", required: true },
     { name: "accounting_date", type: "string", required: true },
     { name: "transaction_date", type: "string", required: true },

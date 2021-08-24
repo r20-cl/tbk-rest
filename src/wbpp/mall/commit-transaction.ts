@@ -1,4 +1,4 @@
-import { Logger, parseOptions, request } from "@miqro/core";
+import { Logger, parse, request } from "@miqro/core";
 import { inspect } from "util";
 import { AUTH_HEADERS, Endpoint, TBKConfig } from "../../config";
 
@@ -39,14 +39,14 @@ export const commitTransaction = (config: TBKConfig): Endpoint<CommitTransaction
       method: "PUT"
     };
     logger.info(`put ${inspect(requestArgs)}`);
-    parseOptions("token", token as any, [
+    parse("token", token as any, [
       { name: "token", type: "string", required: true }
     ], "no_extra");
     const response = await request(requestArgs);
 
     logger.info(`put response ${inspect(response.data)}`);
 
-    const result = parseOptions("response", response.data, [
+    const result = parse("response", response.data, [
       { name: "buy_order", type: "string", required: true },
       { name: "session_id", type: "string", required: true },
       { name: "accounting_date", type: "string", required: true },

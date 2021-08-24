@@ -1,4 +1,4 @@
-import { Logger, parseOptions, request } from "@miqro/core";
+import { Logger, parse, request } from "@miqro/core";
 import { AUTH_HEADERS, Endpoint, TBKConfig } from "../../config";
 import { inspect } from "util";
 
@@ -15,13 +15,13 @@ export interface ConfirmSubscriptionResponse {
 }
 
 const validateRequest = (data: any): ConfirmSubscriptionRequest => {
-  return parseOptions("body", data as any, [
+  return parse("body", data as any, [
     { name: "token", type: "string", required: true },
   ], "no_extra") as unknown as ConfirmSubscriptionRequest;
 };
 
 const validateResponse = (response: any): ConfirmSubscriptionResponse => {
-  return parseOptions("response", response as any, [
+  return parse("response", response as any, [
     { name: "response_code", type: "number", required: true },
     { name: "tbk_user", type: "string", required: true },
     { name: "authorization_code", type: "string", required: true },

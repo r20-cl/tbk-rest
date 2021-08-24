@@ -1,4 +1,4 @@
-import { Logger, parseOptions, request } from "@miqro/core";
+import { Logger, parse, request } from "@miqro/core";
 import { AUTH_HEADERS, Endpoint, TBKConfig } from "../../config";
 import { inspect } from "util";
 
@@ -19,7 +19,7 @@ export interface RefundTransactionReponse {
 }
 
 const validateRequest = (data: any): RefundTransactionRequest => {
-  return parseOptions("body", data, [
+  return parse("body", data, [
     { name: "commerce_code", type: "string", required: true },
     { name: "buy_order", type: "string", required: true },
     { name: "token", type: "string", required: true },
@@ -28,7 +28,7 @@ const validateRequest = (data: any): RefundTransactionRequest => {
 };
 
 const validateResponse = (response: any): RefundTransactionReponse => {
-  return parseOptions("response", response, [
+  return parse("response", response, [
     { name: "type", type: "enum", required: true, enumValues: ["NULLIFIED", "REVERSED"] },
     { name: "authorization_code", type: "string", required: false },
     { name: "authorization_date", type: "string", required: false },

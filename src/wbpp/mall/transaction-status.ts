@@ -1,4 +1,4 @@
-import { Logger, parseOptions, request } from "@miqro/core";
+import { Logger, parse, request } from "@miqro/core";
 import { inspect } from "util";
 import { AUTH_HEADERS, Endpoint, TBKConfig } from "../../config";
 
@@ -34,7 +34,7 @@ export interface TransactionStatusResponse {
 export const transactionStatus = (config: TBKConfig): Endpoint<TransactionStatusRequest, TransactionStatusResponse> => {
   return async (token: TransactionStatusRequest, logger: Logger): Promise<TransactionStatusResponse> => {
     logger.info(`get ${inspect(token)}`);
-    parseOptions("token", token as any, [
+    parse("token", token as any, [
       { name: "token", type: "string", required: true }
     ], "no_extra");
     const args = {
@@ -44,7 +44,7 @@ export const transactionStatus = (config: TBKConfig): Endpoint<TransactionStatus
     };
     const response = await request(args);
     logger.info(`get ${inspect(response.data)}`);
-    const result = parseOptions("response", response.data, [
+    const result = parse("response", response.data, [
       { name: "buy_order", type: "string", required: true },
       { name: "session_id", type: "string", required: true },
       { name: "accounting_date", type: "string", required: true },
